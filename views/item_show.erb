@@ -1,0 +1,15 @@
+<p>Name: <%= @item['item_name'] %></p>
+<p>Slot: <%= @item['slot_name'] %></p>
+<p>Flavour Text: <%= @item['flav'] %></p>
+
+<hr />
+
+<p>Current item owner is <a href="/character/<%= @item['char_id'] %>"><%= @item['char_name'] %></a></p>
+<form action="/item/<%= @item['id'] %>/edit">
+  <button type="submit">Edit Item</button>
+</form>
+
+
+<form action="/item/<%= @item['id'] %>/delete">
+  <button type="submit">Delete Item</button>
+</form>

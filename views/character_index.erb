@@ -1,0 +1,7 @@
+<h2>Full Character List</h2>
+
+<% @characters.each do |character| %>
+  <% if character.id > 0 %>
+    <p><a href="/character/<%= character.id %>"><%= character.char_name %></a></p>
+  <% end %>
+<% end %>

@@ -17,9 +17,17 @@ class Inventory
             VALUES
             ($1,$2)
             RETURNING id'
-    @id = SqlRunner.run(sql, values).first()['id'].to_i
+    @id = SqlRunner.run(sql, values).first['id'].to_i
   end
 
+  def self.find_inventory(id)
+    values = [id]
+    sql = 'SELECT items.*, slots.slot_name FROM items
+            INNER JOIN inventory ON items.id = inventory.item_id
+            INNER JOIN slots ON slots.id = items.slot
+            WHERE inventory.char_id = $1'
+    SqlRunner.run(sql,values).map{|item|Item.new(item)}
+  end
 
   def self.delete_all
     sql = 'DELETE FROM inventory'

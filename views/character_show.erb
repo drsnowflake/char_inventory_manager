@@ -1,0 +1,18 @@
+<p>Name: <%= @character['char_name'] %></p>
+<p>Race: <%= @character['race'] %></p>
+<p>Class: <%= @character['role'] %></p>
+<hr />
+
+<p>Current Inventory:</p>
+<% @inventory.each do |item| %>
+<p><a href="/item/<%= item.id %>"><%= item.item_name %></a></p>
+<% end %>
+
+<form action="/character/<%= @character['id'] %>/edit">
+  <button type="submit">Edit Character</button>
+</form>
+
+
+<form action="/character/<%= @character['id'] %>/delete">
+  <button type="submit">Delete Character</button>
+</form>

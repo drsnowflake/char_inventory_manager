@@ -2,25 +2,40 @@ require_relative('../db/sql_runner')
 
 class Item
 
-  attr_reader :name, :slot, :flav, :id
+  attr_reader :item_name, :slot, :flav, :id
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
-    @name = options['name']
+    @item_name = options['item_name']
     @slot = options['slot'].to_i
     @flav = options['flav']
   end
 
   def save()
-    values = [@name, @slot, @flav]
+    values = [@item_name, @slot, @flav]
     sql = 'INSERT INTO items
-            (name, slot, flav)
+            (item_name, slot, flav)
             VALUES
             ($1,$2,$3)
             RETURNING id'
-    @id = SqlRunner.run(sql, values).first()['id'].to_i
+    @id = SqlRunner.run(sql, values).first['id'].to_i
   end
 
+  def self.find_by_id(id)
+    values = [id]
+    sql = 'SELECT characters.id AS char_id, items.*, slots.slot_name, characters.char_name FROM items
+            INNER JOIN slots on slots.id = items.slot
+            INNER JOIN inventory on items.id = inventory.item_id
+            INNER JOIN characters on characters.id = inventory.char_id
+            WHERE items.id = $1'
+    SqlRunner.run(sql,values).first
+
+  end
+
+  def self.all
+    sql = 'SELECT * FROM items'
+    SqlRunner.run(sql).map{|item|Item.new(item)}
+  end
 
   def self.delete_all
     sql = 'DELETE FROM items'

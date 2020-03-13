@@ -1,0 +1,26 @@
+<form method="post" action="/character/<%= @character['id'] %>">
+  <p><label for="char_name">Name: </label>
+  <input type="text" name="char_name" id="char_name" value="<%= @character['char_name'] %>" REQUIRED/></p>
+
+  <p><label for="race">Race: </label>
+  <select name="race_id" id="race">
+    <option value="<%= @character['race_id'] %>"><%= @character['race'] %></option>
+    <% @races.each do |race| %>
+      <% if race.id != @character['race_id'].to_i %>
+        <option value="<%= race.id %>"><%= race.race %></option>
+      <% end %>
+    <% end %>
+  </select></p>
+
+  <p><label for="role">Class: </label>
+  <select name="role_id" id="role">
+    <option value="<%= @character['role_id'] %>"><%= @character['role'] %></option>
+    <% @roles.each do |role| %>
+      <% if role.id != @character['role_id'].to_i %>
+        <option value="<%= role.id %>"><%= role.role %></option>
+      <% end %>
+    <% end %>
+  </select></p>
+
+  <input type="submit" value="Update Character">
+</form>

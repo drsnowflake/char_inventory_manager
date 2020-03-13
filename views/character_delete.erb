@@ -1,0 +1,12 @@
+<h1>Character <%= @character['char_name'] %> is about to be deleted!</h1>
+
+
+<h2>Are you sure this is what you want?</h2>
+
+
+<form action="/character/<%= @character['id'] %>/delete" method="post">
+  <button type="submit">Yes</button>
+</form>
+<form action="/character/<%= @character['id'] %>">
+  <button type="submit">No, back to character</button>
+</form>

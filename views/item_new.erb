@@ -1,0 +1,16 @@
+<form method="post" action="/item">
+  <label for="item_name">Name:</label>
+  <input type="text" name="item_name" id="item_name" REQUIRED/>
+
+  <label for="slot">Race:</label>
+  <select name="slot" id="slot">
+    <% @slots.each do |slot| %>
+      <option value="<%= slot.id %>"><%= slot.slot_name %></option>
+    <% end %>
+  </select>
+
+  <label for="flav">Flavour Text:</label>
+  <input type="text" name="flav" value="">
+
+  <input type="submit" value="Create Item">
+</form>
