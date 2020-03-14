@@ -1,0 +1,12 @@
+<h1>Race <%= @race.race %> is about to be deleted!</h1>
+
+
+<h2>Are you sure this is what you want?</h2>
+
+
+<form action="/race/<%= @race.id %>/delete" method="post">
+  <button type="submit">Yes</button>
+</form>
+<form action="/race">
+  <button type="submit">No, back to race list</button>
+</form>

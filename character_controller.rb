@@ -146,3 +146,31 @@ post '/inventory/:id' do
   @inventory = Inventory.find_by_id(params[:id])
   erb(:inventory_update)
 end
+
+# RACE ROUTES
+
+get '/race' do
+  @races = Race.all
+  erb(:race_index)
+end
+
+get '/race/new' do
+  erb(:race_new)
+end
+
+get '/race/:id/delete' do
+  @race = Race.new(Race.find_by_id(params[:id]))
+  erb(:race_delete)
+end
+
+post '/race' do
+  @race = Race.new(params)
+  @race.save
+  erb(:race_create)
+end
+
+post '/race/:id/delete' do
+  @race = Race.new(Race.find_by_id(params[:id]))
+  Race.delete_by_id(@race.id)
+  erb(:race_deleted)
+end

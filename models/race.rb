@@ -9,7 +9,7 @@ class Race
     @race = options['race']
   end
 
-  def save()
+  def save
     values = [@race]
     sql = 'INSERT INTO races
             (race)
@@ -17,6 +17,21 @@ class Race
             ($1)
             RETURNING id'
     @id = SqlRunner.run(sql, values).first['id'].to_i
+  end
+
+  def self.delete_by_id(id)
+    values = [id]
+    sql = 'DELETE FROM races
+            WHERE id = $1'
+    SqlRunner.run(sql, values)
+  end
+
+  def self.find_by_id(id)
+    values = [id]
+    sql = 'SELECT * FROM races
+            WHERE id = $1'
+    SqlRunner.run(sql,values).first
+
   end
 
   def self.all

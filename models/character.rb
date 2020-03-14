@@ -11,16 +11,10 @@ class Character
     @role_id = options['role_id'].to_i
   end
 
-  def save_holder
-    values = [@char_name, @race_id, @role_id, @id]
-    sql = 'INSERT INTO characters
-            (char_name, race_id, role_id, id)
-            VALUES
-            ($1,$2,$3,$4)'
-    SqlRunner.run(sql, values)
-  end
-
   def save
+    if id.to_i == -1
+      return
+    end
     values = [@char_name, @race_id, @role_id]
     sql = 'INSERT INTO characters
             (char_name, race_id, role_id)
@@ -31,6 +25,9 @@ class Character
   end
 
   def update
+    if id.to_i == -1
+      return
+    end
     values = [@char_name, @race_id, @role_id, @id]
     sql = "UPDATE characters
             SET (char_name, race_id, role_id)
@@ -41,6 +38,9 @@ class Character
   end
 
   def self.find_by_id(id)
+    if id.to_i == -1
+      return
+    end
     values = [id]
     sql = 'SELECT characters.*, races.race, roles.role FROM characters
             INNER JOIN races on races.id = characters.race_id
