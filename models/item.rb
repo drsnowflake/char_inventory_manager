@@ -11,7 +11,7 @@ class Item
     @flav = options['flav']
   end
 
-  def save()
+  def save
     values = [@item_name, @slot, @flav]
     sql = 'INSERT INTO items
             (item_name, slot, flav)
@@ -21,19 +21,36 @@ class Item
     @id = SqlRunner.run(sql, values).first['id'].to_i
   end
 
+  def update
+    values = [@item_name, @slot, @flav, @id]
+    sql = 'UPDATE items
+            SET (item_name, slot, flav)
+            =
+            ($1,$2,$3)
+            WHERE id = $4'
+    SqlRunner.run(sql, values)
+  end
+
   def self.find_by_id(id)
     values = [id]
-    sql = 'SELECT characters.id AS char_id, items.*, slots.slot_name, characters.char_name FROM items
+    sql = 'SELECT characters.id AS char_id, items.*, slots.slot_name, characters.char_name, inventory.id AS inv_id FROM items
             INNER JOIN slots on slots.id = items.slot
             INNER JOIN inventory on items.id = inventory.item_id
             INNER JOIN characters on characters.id = inventory.char_id
             WHERE items.id = $1'
     SqlRunner.run(sql,values).first
+  end
 
+  def self.delete_by_id(id)
+    values = [id]
+    sql = 'DELETE FROM items
+            WHERE id = $1'
+    SqlRunner.run(sql,values)
   end
 
   def self.all
-    sql = 'SELECT * FROM items'
+    sql = 'SELECT * FROM items
+            ORDER BY id'
     SqlRunner.run(sql).map{|item|Item.new(item)}
   end
 

@@ -5,6 +5,11 @@
 <hr />
 
 <p>Current item owner is <a href="/character/<%= @item['char_id'] %>"><%= @item['char_name'] %></a></p>
+
+<form action="/inventory/<%= @item['inv_id'] %>">
+  <button type="submit">Change Owner</button>
+</form>
+
 <form action="/item/<%= @item['id'] %>/edit">
   <button type="submit">Edit Item</button>
 </form>

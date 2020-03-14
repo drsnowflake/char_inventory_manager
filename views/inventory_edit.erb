@@ -1,0 +1,16 @@
+<form method="post" action="/inventory/<%= @inventory['inv_id'] %>">
+
+  <label for="char_id">Owner:</label>
+  <select name="char_id" id="char_id">
+    <option value="<%= @inventory['char_id'] %>"><%= @inventory['char_name'] %></option>
+    <% @characters.each do |character| %>
+      <% if character.id != @inventory['char_id'].to_i %>
+        <option value="<%= character.id %>"><%= character.char_name %></option>
+      <% end %>
+    <% end %>
+  </select>
+
+  <input type="hidden" name="item_id" value="<%= @inventory['id'] %>">
+
+  <input type="submit" value="Assign Item">
+</form>

@@ -1,0 +1,20 @@
+<form method="post" action="/item/<%= @item['id'] %>">
+  <label for="item_name">Name:</label>
+  <input type="text" name="item_name" id="item_name" value="<%= @item['item_name'] %>" REQUIRED/>
+
+  <label for="slot">Slot:</label>
+  <select name="slot" id="slot">
+    <option value="<%= @item['slot'] %>"><%= @item['slot_name'] %></option>
+    <% @slots.each do |slot| %>
+      <% if  slot.id != @item['slot'].to_i %>
+        <option value="<%= slot.id %>"><%= slot.slot_name %></option>
+      <% end %>
+    <% end %>
+  </select>
+
+  <input type="hidden" name="char_id" value="<%= @item['char_id'] %>">
+  <label for="flav">Flavour Text:</label>
+  <input type="text" name="flav" value="<%= @item['flav'] %>">
+
+  <input type="submit" value="Update Item">
+</form>

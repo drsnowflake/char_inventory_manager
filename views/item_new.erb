@@ -2,7 +2,7 @@
   <label for="item_name">Name:</label>
   <input type="text" name="item_name" id="item_name" REQUIRED/>
 
-  <label for="slot">Race:</label>
+  <label for="slot">Slot:</label>
   <select name="slot" id="slot">
     <% @slots.each do |slot| %>
       <option value="<%= slot.id %>"><%= slot.slot_name %></option>

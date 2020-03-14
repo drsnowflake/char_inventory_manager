@@ -5,3 +5,12 @@
     <p><a href="/character/<%= character.id %>"><%= character.char_name %></a></p>
   <% end %>
 <% end %>
+
+<hr />
+
+<% if @characters.length == 1 %>
+  <p>No adventurers in database, maybe go make one?</p>
+<% end %>
+
+<a href="/character/new">Add new adventurer</a>
+<a href="/">Index</a>

@@ -1,18 +1,21 @@
 <p>Name: <%= @character['char_name'] %></p>
+<% if params[:id].to_i > 0 %>
 <p>Race: <%= @character['race'] %></p>
 <p>Class: <%= @character['role'] %></p>
+<% end %>
 <hr />
 
 <p>Current Inventory:</p>
 <% @inventory.each do |item| %>
-<p><a href="/item/<%= item.id %>"><%= item.item_name %></a></p>
+<p><a href="/item/<%= item['id'] %>"><%= item['item_name'] %></a></p>
 <% end %>
 
-<form action="/character/<%= @character['id'] %>/edit">
-  <button type="submit">Edit Character</button>
-</form>
+<% if params[:id].to_i > 0 %>
+  <form action="/character/<%= @character['id'] %>/edit">
+    <button type="submit">Edit Character</button>
+  </form>
 
-
-<form action="/character/<%= @character['id'] %>/delete">
-  <button type="submit">Delete Character</button>
-</form>
+  <form action="/character/<%= @character['id'] %>/delete">
+    <button type="submit">Delete Character</button>
+  </form>
+<% end %>

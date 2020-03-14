@@ -3,3 +3,12 @@
 <% @items.each do |item| %>
 <p><a href="/item/<%= item.id %>"><%= item.item_name %></a></p>
 <% end %>
+
+<hr />
+
+<% if @items.length == 0 %>
+  <p>No items in database, maybe go make one?</p>
+<% end %>
+
+<a href="/item/new">Add New Item</a>
+<a href="/">Index</a>

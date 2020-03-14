@@ -56,6 +56,15 @@ end
 
 post '/character/:id/delete' do
   @character = Character.find_by_id(params[:id])
+  @inventory = Inventory.find_inventory(params[:id])
+  @inventory.each do |inv|
+    drop_item = Inventory.new({
+      'id' => inv['inv_id'].to_i,
+      'char_id' => -1,
+      'item_id' => inv['id'].to_i
+    })
+    drop_item.update
+  end
   Character.delete_by_id(params[:id])
   erb(:character_deleted)
 end
@@ -78,6 +87,17 @@ get '/item/new' do
   erb(:item_new)
 end
 
+get '/item/:id/delete' do
+  @item = Item.find_by_id(params[:id])
+  erb(:item_delete)
+end
+
+get '/item/:id/edit' do
+  @slots = Slot.all
+  @item = Item.find_by_id(params[:id])
+  erb(:item_edit)
+end
+
 get '/item/:id' do
   @item = Item.find_by_id(params[:id])
   erb(:item_show)
@@ -85,11 +105,44 @@ end
 
 post '/item' do
   @item = Item.new(params)
-  @item.save()
+  @item.save
   @inventory = Inventory.new({
     'char_id' => -1,
     'item_id' => @item.id
     })
   @inventory.save
   erb(:item_create)
+end
+
+post '/item/:id/delete' do
+  @item = Item.find_by_id(params[:id])
+  Inventory.delete_by_id(@item['inv_id'])
+  Item.delete_by_id(params[:id])
+  erb(:item_deleted)
+end
+
+post '/item/:id' do
+  p params
+  @item = Item.new(params)
+  @item.update
+  erb(:item_update)
+end
+
+# INVENTORY ROUTES
+
+get '/inventory/:id' do
+  @characters = Character.all
+  @inventory = Inventory.find_by_id(params[:id])
+  erb(:inventory_edit)
+end
+
+post '/inventory/:id' do
+  @inventory = Inventory.new({
+    'id' => params[:id],
+    'char_id' => params[:char_id],
+    'item_id' => params[:item_id]
+    })
+  @inventory.update
+  @inventory = Inventory.find_by_id(params[:id])
+  erb(:inventory_update)
 end

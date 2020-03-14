@@ -56,6 +56,9 @@ class Character
   end
 
   def self.delete_by_id(id)
+    if id.to_i == -1
+      return
+    end
     values = [id]
     sql = 'DELETE FROM characters
             WHERE id = $1'
