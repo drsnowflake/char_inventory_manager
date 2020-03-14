@@ -154,7 +154,3 @@ inventory3 = Inventory.new({
 inventory1.save
 inventory2.save
 inventory3.save
-
-p character1
-p item1
-p inventory1
