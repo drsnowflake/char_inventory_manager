@@ -17,4 +17,4 @@ A Dungeon Master (DM) has approached asking for a way to monitor and modify thei
 - Each instance of a character could have a designated wearable inventory
 - The app could restrict certain items (eg helmets/gloves) to specific slots (eg head/hands) in the character inventory
 - Tracking of character health/stats
-- Any further features relevant to character/inventory management
+- Any further features relevant to character/inventory management 
