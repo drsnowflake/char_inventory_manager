@@ -14,8 +14,13 @@ also_reload('./models/*')
 get '/' do
   @characters = Character.all
   @items = Item.all
+  @races = Race.all
   erb(:index)
 end
+
+# not_found do
+#   'You shouldn\'t be here'
+# end
 
 # CHARACTER ROUTES
 
@@ -170,7 +175,13 @@ post '/race' do
 end
 
 post '/race/:id/delete' do
+  @races = Race.all.length
   @race = Race.new(Race.find_by_id(params[:id]))
-  Race.delete_by_id(@race.id)
+  if @races == 1
+    @deleted = false
+  else
+    Race.delete_by_id(@race.id)
+    @deleted = true
+  end
   erb(:race_deleted)
 end

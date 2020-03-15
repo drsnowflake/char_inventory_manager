@@ -1,6 +1,16 @@
+<% if @deleted == true %>
 <h1>Long live the mighty race of <%= @race.race %>, oh wait no, you purged them, genocide much?</h1>
 
 <h2>Any characters with this race have been assigned a random one</h2>
+<% end %>
+
+<% if @deleted == false %>
+<h1>At least one race must excist, please go make another of your choice before deleting this one</h1>
+
+<a href="/race/new">Make a New Race</a>
+
+<% end %>
+
 
 <a href="/race">Full Race List</a>
 
