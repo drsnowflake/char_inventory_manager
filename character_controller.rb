@@ -15,6 +15,7 @@ get '/' do
   @characters = Character.all
   @items = Item.all
   @races = Race.all
+  @roles = Role.all
   erb(:index)
 end
 
@@ -127,7 +128,6 @@ post '/item/:id/delete' do
 end
 
 post '/item/:id' do
-  p params
   @item = Item.new(params)
   @item.update
   erb(:item_update)
@@ -168,6 +168,11 @@ get '/race/:id/delete' do
   erb(:race_delete)
 end
 
+get '/race/:id/edit' do
+  @race = Race.find_by_id(params[:id])
+  erb(:race_edit)
+end
+
 post '/race' do
   @race = Race.new(params)
   @race.save
@@ -183,12 +188,68 @@ post '/race/:id/delete' do
   else
     race_choice = Race.find_other_races(params[:id])
     @chars.each{|char|
-      random_choice = race_choice.sample['id'].to_i
-      char.race_id = random_choice
+      char.race_id = race_choice.sample['id'].to_i
       char.update
     }
     Race.delete_by_id(@race.id)
     @deleted = true
   end
   erb(:race_deleted)
+end
+
+post '/race/:id' do
+  @race = Race.new(params)
+  @race.update
+  erb(:race_update)
+end
+
+# Role ROUTES
+
+get '/role' do
+  @roles = Role.all
+  erb(:role_index)
+end
+
+get '/role/new' do
+  erb(:role_new)
+end
+
+get '/role/:id/delete' do
+  @role = Role.new(Role.find_by_id(params[:id]))
+  erb(:role_delete)
+end
+
+post '/role' do
+  @role = Role.new(params)
+  @role.save
+  erb(:role_create)
+end
+
+get '/role/:id/edit' do
+  @role = Role.find_by_id(params[:id])
+  erb(:role_edit)
+end
+
+post '/role/:id/delete' do
+  @roles = Role.all.length
+  @role = Role.new(Role.find_by_id(params[:id]))
+  @chars = Role.find_chars(params[:id])
+  if @roles == 1
+    @deleted = false
+  else
+    role_choice = Role.find_other_roles(params[:id])
+    @chars.each{|char|
+      char.role_id = role_choice.sample['id'].to_i
+      char.update
+    }
+    Role.delete_by_id(@role.id)
+    @deleted = true
+  end
+  erb(:role_deleted)
+end
+
+post '/role/:id' do
+  @role = Role.new(params)
+  @role.update
+  erb(:role_update)
 end

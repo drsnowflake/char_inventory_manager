@@ -1,0 +1,6 @@
+<form method="post" action="/role/<%= @role['id'] %>">
+  <label for="role">Name:</label>
+  <input type="text" name="role" id="role" value="<%= @role['role'] %>" REQUIRED/>
+
+  <input type="submit" value="Edit Role">
+</form>

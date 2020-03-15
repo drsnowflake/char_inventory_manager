@@ -1,0 +1,11 @@
+<h1>Role <%= @role.role %> is about to be deleted!</h1>
+
+
+<h2>Are you sure this is what you want?</h2>
+
+<form action="/role/<%= @role.id %>/delete" method="post">
+  <button type="submit">Yes</button>
+</form>
+<form action="/role">
+  <button type="submit">No, back to role list</button>
+</form>

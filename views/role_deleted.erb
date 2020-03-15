@@ -1,0 +1,21 @@
+<% if @deleted == true %>
+<h1>Long live the mighty role of <%= @role.role %>, oh wait no, you purged them, genocide much?</h1>
+
+<h2>Characters listed below have been assigned a random role</h2>
+  <% @chars.each do |char| %>
+    <p><%= char.char_name %></p>
+  <% end %>
+
+<% end %>
+
+<% if @deleted == false %>
+<h1>At least one role must excist, please go make another of your choice before deleting this one</h1>
+
+<a href="/role/new">Make a New Role</a>
+
+<% end %>
+
+
+<a href="/role">Full Role List</a>
+
+<a href="/">Index</a>

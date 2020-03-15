@@ -1,0 +1,6 @@
+<form method="post" action="/race/<%= @race['id'] %>">
+  <label for="race">Name:</label>
+  <input type="text" name="race" id="race" value="<%= @race['race'] %>" REQUIRED/>
+
+  <input type="submit" value="Edit Race">
+</form>
