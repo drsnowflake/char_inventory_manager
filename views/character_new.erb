@@ -9,7 +9,7 @@
     <% end %>
   </select>
 
-  <label for="role">Race:</label>
+  <label for="role">Class:</label>
   <select name="role_id" id="role">
     <% @roles.each do |role| %>
       <option value="<%= role.id %>"><%= role.role %></option>

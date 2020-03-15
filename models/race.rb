@@ -31,7 +31,20 @@ class Race
     sql = 'SELECT * FROM races
             WHERE id = $1'
     SqlRunner.run(sql,values).first
+  end
 
+  def self.find_other_races(id)
+    values = [id]
+    sql = 'SELECT * FROM Races
+            WHERE races.id > 0 AND races.id NOT IN ($1)'
+    SqlRunner.run(sql, values).map{|race|race}
+  end
+
+  def self.find_chars(id)
+    values = [id]
+    sql = 'SELECT * FROM characters
+            WHERE characters.race_id = $1'
+    SqlRunner.run(sql, values).map{|character|Character.new(character)}
   end
 
   def self.all

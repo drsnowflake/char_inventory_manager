@@ -1,3 +1,5 @@
+require('pry-byebug')
+
 require_relative('../models/inventory')
 require_relative('../models/character')
 require_relative('../models/role')
@@ -154,3 +156,6 @@ inventory3 = Inventory.new({
 inventory1.save
 inventory2.save
 inventory3.save
+
+# binding.pry
+# nil

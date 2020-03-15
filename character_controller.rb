@@ -177,9 +177,16 @@ end
 post '/race/:id/delete' do
   @races = Race.all.length
   @race = Race.new(Race.find_by_id(params[:id]))
+  @chars = Race.find_chars(params[:id])
   if @races == 1
     @deleted = false
   else
+    race_choice = Race.find_other_races(params[:id])
+    @chars.each{|char|
+      random_choice = race_choice.sample['id'].to_i
+      char.race_id = random_choice
+      char.update
+    }
     Race.delete_by_id(@race.id)
     @deleted = true
   end
