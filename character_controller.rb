@@ -16,44 +16,44 @@ get '/' do
   @items = Item.all
   @races = Race.all
   @roles = Role.all
-  erb(:index)
+  erb :'index'
 end
 
 # CHARACTER ROUTES
 
 get '/character' do
   @characters = Character.all
-  erb(:character_index)
+  erb :'character/index'
 end
 
 get '/character/new' do
   @races = Race.all
   @roles = Role.all
-  erb(:character_new)
+  erb :'character/new'
 end
 
 get '/character/:id/delete' do
   @character = Character.find_by_id(params[:id])
-  erb(:character_delete)
+  erb :'character/delete'
 end
 
 get '/character/:id/edit' do
   @races = Race.all
   @roles = Role.all
   @character = Character.find_by_id(params[:id])
-  erb(:character_edit)
+  erb :'character/edit'
 end
 
 get '/character/:id' do
   @character = Character.find_by_id(params[:id])
   @inventory = Inventory.find_inventory(params[:id])
-  erb(:character_show)
+  erb :'character/show'
 end
 
 post '/character' do
   @character = Character.new(params)
   @character.save()
-  erb(:character_create)
+  erb :'character/create'
 end
 
 post '/character/:id/delete' do
@@ -68,41 +68,41 @@ post '/character/:id/delete' do
     drop_item.update
   end
   Character.delete_by_id(params[:id])
-  erb(:character_deleted)
+  erb :'character/deleted'
 end
 
 post '/character/:id' do
   @character = Character.new(params)
   @character.update()
-  erb(:character_update)
+  erb :'character/update'
 end
 
 # ITEM ROUTES
 
 get '/item' do
   @items = Item.all
-  erb(:item_index)
+  erb :'item/index'
 end
 
 get '/item/new' do
   @slots = Slot.all
-  erb(:item_new)
+  erb :'item/new'
 end
 
 get '/item/:id/delete' do
   @item = Item.find_by_id(params[:id])
-  erb(:item_delete)
+  erb :'item/delete'
 end
 
 get '/item/:id/edit' do
   @slots = Slot.all
   @item = Item.find_by_id(params[:id])
-  erb(:item_edit)
+  erb :'item/edit'
 end
 
 get '/item/:id' do
   @item = Item.find_by_id(params[:id])
-  erb(:item_show)
+  erb :'item/show'
 end
 
 post '/item' do
@@ -113,20 +113,20 @@ post '/item' do
     'item_id' => @item.id
     })
   @inventory.save
-  erb(:item_create)
+  erb :'item/create'
 end
 
 post '/item/:id/delete' do
   @item = Item.find_by_id(params[:id])
   Inventory.delete_by_id(@item['inv_id'])
   Item.delete_by_id(params[:id])
-  erb(:item_deleted)
+  erb :'item/deleted'
 end
 
 post '/item/:id' do
   @item = Item.new(params)
   @item.update
-  erb(:item_update)
+  erb :'item/update'
 end
 
 # INVENTORY ROUTES
@@ -134,7 +134,7 @@ end
 get '/inventory/:id' do
   @characters = Character.all
   @inventory = Inventory.find_by_id(params[:id])
-  erb(:inventory_edit)
+  erb :'inventory/edit'
 end
 
 post '/inventory/:id' do
@@ -152,34 +152,34 @@ post '/inventory/:id' do
     @inventory = Inventory.find_by_id(params[:id])
     @added = true
   end
-    erb(:inventory_update)
+    erb :'inventory/update'
 end
 
 # RACE ROUTES
 
 get '/race' do
   @races = Race.all
-  erb(:race_index)
+  erb :'race/index'
 end
 
 get '/race/new' do
-  erb(:race_new)
+  erb :'race/new'
 end
 
 get '/race/:id/delete' do
   @race = Race.new(Race.find_by_id(params[:id]))
-  erb(:race_delete)
+  erb :'race/delete'
 end
 
 get '/race/:id/edit' do
   @race = Race.find_by_id(params[:id])
-  erb(:race_edit)
+  erb :'race/edit'
 end
 
 post '/race' do
   @race = Race.new(params)
   @race.save
-  erb(:race_create)
+  erb :'race/create'
 end
 
 post '/race/:id/delete' do
@@ -197,40 +197,40 @@ post '/race/:id/delete' do
     Race.delete_by_id(@race.id)
     @deleted = true
   end
-  erb(:race_deleted)
+  erb :'race/deleted'
 end
 
 post '/race/:id' do
   @race = Race.new(params)
   @race.update
-  erb(:race_update)
+  erb :'race/update'
 end
 
 # Role ROUTES
 
 get '/role' do
   @roles = Role.all
-  erb(:role_index)
+  erb :'role/index'
 end
 
 get '/role/new' do
-  erb(:role_new)
+  erb :'role/new'
 end
 
 get '/role/:id/delete' do
   @role = Role.new(Role.find_by_id(params[:id]))
-  erb(:role_delete)
+  erb :'role/delete'
 end
 
 post '/role' do
   @role = Role.new(params)
   @role.save
-  erb(:role_create)
+  erb :'role/create'
 end
 
 get '/role/:id/edit' do
   @role = Role.find_by_id(params[:id])
-  erb(:role_edit)
+  erb :'role/edit'
 end
 
 post '/role/:id/delete' do
@@ -248,11 +248,11 @@ post '/role/:id/delete' do
     Role.delete_by_id(@role.id)
     @deleted = true
   end
-  erb(:role_deleted)
+  erb :'role/deleted'
 end
 
 post '/role/:id' do
   @role = Role.new(params)
   @role.update
-  erb(:role_update)
+  erb :'role/update'
 end
