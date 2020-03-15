@@ -1,4 +1,12 @@
-<p>Item <%= @inventory['item_name'] %> has been reassigned to <a href="/character/<%= @inventory['char_id'] %>"><%= @inventory['char_name'] %></a></p>
+<% if @added == true %>
+  <p>Item <%= @inventory['item_name'] %> has been reassigned to <a href="/character/<%= @inventory['char_id'] %>"><%= @inventory['char_name'] %></a></p>
+<% end %>
+
+<% if @added == false %>
+  <p>Item <%= @inventory['item_name'] %> has not been reassigned and is still currently owned by <a href="/character/<%= @inventory['char_id'] %>"><%= @inventory['char_name'] %></a></p>
+
+<% end %>
+
 
 <a href="/item/<%= @inventory['id'] %>">View Item</a>
 <a href="/item">Full Item List</a>

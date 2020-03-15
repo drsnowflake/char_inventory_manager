@@ -2,19 +2,19 @@
   <label for="char_name">Name:</label>
   <input type="text" name="char_name" id="char_name" REQUIRED/>
 
-  <label for="race">Race:</label>
+  <p><label for="race">Race:</label>
   <select name="race_id" id="race">
     <% @races.each do |race| %>
       <option value="<%= race.id %>"><%= race.race %></option>
     <% end %>
-  </select>
+  </select></p>
 
-  <label for="role">Class:</label>
+  <p><label for="role">Class:</label>
   <select name="role_id" id="role">
     <% @roles.each do |role| %>
       <option value="<%= role.id %>"><%= role.role %></option>
     <% end %>
-  </select>
+  </select></p>
 
   <input type="submit" value="Create Character">
 </form>
