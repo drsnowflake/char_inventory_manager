@@ -33,10 +33,21 @@ class Item
 
   def self.find_by_id(id)
     values = [id]
-    sql = 'SELECT characters.id AS char_id, items.*, slots.slot_name, characters.char_name, inventory.id AS inv_id FROM items
-            INNER JOIN slots on slots.id = items.slot
-            INNER JOIN inventory on items.id = inventory.item_id
-            INNER JOIN characters on characters.id = inventory.char_id
+    sql = 'SELECT characters.id AS char_id,
+                  characters.char_name,
+                  items.id,
+                  items.item_name,
+                  items.slot,
+                  items.flav,
+                  slots.slot_name,
+                  inventory.id AS inv_id
+            FROM items
+            INNER JOIN slots
+            ON slots.id = items.slot
+            INNER JOIN inventory
+            ON inventory.item_id = items.id
+            INNER JOIN characters
+            ON characters.id = inventory.char_id
             WHERE items.id = $1'
     SqlRunner.run(sql,values).first
   end
@@ -50,7 +61,7 @@ class Item
 
   def self.all
     sql = 'SELECT * FROM items
-            ORDER BY id'
+            ORDER BY item_name'
     SqlRunner.run(sql).map{|item|Item.new(item)}
   end
 

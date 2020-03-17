@@ -40,9 +40,17 @@ class Character
 
   def self.find_by_id(id)
     values = [id]
-    sql = 'SELECT characters.*, races.race, roles.role FROM characters
-            INNER JOIN races on races.id = characters.race_id
-            INNER JOIN roles on roles.id = characters.role_id
+    sql = 'SELECT characters.id,
+                  characters.char_name,
+                  characters.race_id,
+                  characters.role_id,
+                  races.race,
+                  roles.role
+            FROM characters
+            INNER JOIN races
+            ON races.id = characters.race_id
+            INNER JOIN roles
+            ON roles.id = characters.role_id
             WHERE characters.id = $1'
     SqlRunner.run(sql,values).first
   end

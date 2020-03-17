@@ -1,3 +1,9 @@
+<% if params['char_name'] %>
+  <h3>Item '<%= params['item_name'] %>' has been deleted from <%= params['char_name'] %>
+    <% if params['char_name'] != 'Unassigned' %>, best hope they didn't need it</h3>
+  <% end %>
+<% end %>
+
 <h2>Full Item List</h2>
 
 <% @items.each do |item| %>

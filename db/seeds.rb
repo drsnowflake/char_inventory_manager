@@ -159,3 +159,5 @@ inventory3.save
 
 # binding.pry
 # nil
+
+p 'Database Populated'
