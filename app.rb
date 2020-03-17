@@ -20,3 +20,12 @@ get '/' do
   @roles = Role.all
   erb :'index'
 end
+
+get '/reset-mini' do
+  erb :'reset-mini'
+end
+
+get '/reset' do
+  erb :'reset'
+end
+

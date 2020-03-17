@@ -1,9 +1,10 @@
-<h2>Full Role List</h2>
+<section class="flex-container">
+<header class="flex-item mini-header"><h2>Roles</h2></header>
 
 <% @roles.each do |role| %>
   <% if role.id > 0 %>
-    <p>
-      Role: <%= role.role %>
+    <aside class="flex-item mini-main">
+      <p>Role: <%= role.role %>
       <form action="/role/<%= role.id %>/edit">
         <button type="submit">Edit Role</button>
       </form>
@@ -11,10 +12,9 @@
       <form action="/role/<%= role.id %>/delete">
         <button type="submit">Delete Role</button>
       </form></p>
+    </aside>
   <% end %>
 <% end %>
 
-<hr />
-
-<a href="/role/new">Add new role</a>
-<a href="/">Index</a>
+<footer class="flex-item footer"><a href="/role/new">Add new role</a></footer>
+</section>

@@ -1,0 +1,128 @@
+<% 
+
+Inventory.delete_all
+Character.delete_all
+Item.delete_all
+Role.delete_all
+Race.delete_all
+Slot.delete_all
+
+slot1 = Slot.new({
+  'slot_name' => 'Head'
+  })
+
+slot2 = Slot.new({
+  'slot_name' => 'Chest'
+  })
+
+slot3 = Slot.new({
+  'slot_name' => 'Hands'
+  })
+
+slot4 = Slot.new({
+  'slot_name' => 'Legs'
+  })
+
+slot5 = Slot.new({
+  'slot_name' => 'Feet'
+  })
+
+slot6 = Slot.new({
+  'slot_name' => 'Weapon'
+  })
+
+slot7 = Slot.new({
+  'slot_name' => 'Misc'
+})
+
+slot1.save
+slot2.save
+slot3.save
+slot4.save
+slot5.save
+slot6.save
+slot7.save
+
+
+races = %w[Dragonborn Dwarf Elf Gnome Half-Elf Halfling Half-Orc Human Tiefling]
+
+races.each do |race| 
+  Race.new({
+    'race' => race
+  }).save
+end
+
+roles = %w[Barbarian Bard Cleric Druid Fighter Monk Paladin Ranger Rogue Sorcerer Warlock Wizard]
+
+roles.each do |role| 
+  Role.new({
+    'role' => role
+  }).save
+end
+
+race_choices = Race.find_other_races(-1)
+
+role_choices = Role.find_other_roles(-1)
+
+
+items = [
+  {'item_name' => 'Deck of Many Things', 
+    'slot' => slot7.id, 
+    'flav' => 'A magical deck of cards, A player can choose to draw up to four cards from the deck, with each one possessing an incredibly powerful magical ability.'},
+  {'item_name' => 'The Philosopher\'s Stone', 
+    'slot' => slot7.id, 
+    'flav' => 'The silvery substance that exists within a Philosopher\'s Stone provides an arcane spellcaster the ability to transmute five-thousand pounds of iron into silver or one-thousand pounds of lead into gold'},
+  {'item_name' => 'The Invulnerable Coat Of Arnd', 
+    'slot' => slot2.id, 
+    'flav' => 'The Invulnerable Coat of Arnd makes you immune to critical hits and sneak attacks, takes ten points of damage off every hit and twenty points off of acid, cold, electricity, fire, and sonic damage.'},
+  {'item_name' => 'The Staff Of The Magi', 
+    'slot' => slot6.id, 
+    'flav' => 'Staff of the Magi offers the user access to a wide range of spells, some of which are high-level. One of the best aspects of the staff is that it has the ability to absorb spells that are cast at you and convert them into charges for its abilities.'},
+  {'item_name' => 'The Wand Of Orcus',
+    'slot' => slot6.id,
+    'flav' => 'Wand of Orcus has a 50% chance of annihilating anything that it touches, save for Demon Princes and those with divine powers.'},
+  {'item_name' => 'The Rod Of Seven Parts',
+    'slot' => slot6.id,
+    'flav' => 'The Rod grants its wielder access to some of the most powerful Cleric and Druid spells in the game for free, including Control Weather and Whirlwind, which can be used once per day'},
+  {'item_name' => 'The Sword Of Kas',
+    'slot' => slot6.id,
+    'flav' => 'The Sword of Kas grants a bonus to the Strength score of its wielder and its keen/vorpal traits mean that it will instantly destroy most opponents that it lands a critical hit on'},
+  {'item_name' => 'The Ring Of Winter',
+    'slot' => slot7.id,
+    'flav' => 'The true power of the Ring of Winter is in its ice-based abilities. The Ring allows you to freeze the enemy where they stand, so they will break in a single hit.'},
+  {'item_name' => 'The Regalia Of Might',
+    'slot' => slot1.id,
+    'flav' => 'Possessing this item will give you a bonus to your stats and access to several powerful spells and make Celestial/Infernal beings more willing to serve you, should you call upon their aid in battle.'},
+  {'item_name' => 'The Sphere Of Annihilation',
+    'slot' => slot7.id,
+    'flav' => 'Anything that comes into contact with the Sphere is utterly destroyed and only the direct intervention of a god can save you.'},
+  {'item_name' => 'The Talisman Of Pure Good/Ultimate Evil',
+    'slot' => slot7.id,
+    'flav' => 'The Talisman of Pure Good/Ultimate Evil has the ability to make the ground literally swallow any evil/good divine spellcaster that its wielder can see.'},
+  {'item_name' => 'The Eye And Hand Of Vecna',
+    'slot' => slot3.id,
+    'flav' => 'The power of Vecna is such that his disembodied limbs became powerful magical artifacts. The only downside to their use is that you have to remove a corresponding limb in order to access their powers.'},
+  {'item_name' => 'The Orbs Of Dragonkind',
+    'slot' => slot7.id,
+    'flav' => 'The bearer of one of the Orbs can take over the minds of any dragon whose type corresponds to the color of their Orb as if they were casting the "dominate person" spell upon them.'},
+  {'item_name' => 'The Cyrinishad',
+    'slot' => slot7.id,
+    'flav' => 'A magical book that turns anyone who read it into a devout worshiper of Cyric. The power of the Cyrinishad was such that it worked on the gods themselves, as Mask almost lost his mind while reading the book.'},
+  {'item_name' => 'Crenshinibon',
+    'slot' => slot7.id,
+    'flav' => 'Anyone who wields Crenshinibon can create a magical tower, known as Crystal-Tirith. While inside the tower, the bearer of Crenshinibon is immune to all forms of damage.'},
+  {'item_name' => 'Brimedleaf hat of Gideon',
+    'slot' => slot1.id,
+    'flav' => 'Once rumoured to belong to the greatest bard in all the kingdoms, grants the bearer access to charm person for free (must sing funky town to activate)'}
+  ]
+
+items.each do |item|
+  temp = Item.new(item)
+  temp.save
+  Inventory.new({
+    'char_id' => -1,
+    'item_id' => temp.id
+  }).save
+end
+
+%>

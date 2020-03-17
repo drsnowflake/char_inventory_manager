@@ -1,11 +1,14 @@
+<section class="flex-container">
 <% if @deleted == true %>
 <h3>Long live the mighty role of <%= @role.role %>, oh wait no, you purged them, genocide much?</h3>
 
 <% if @chars.length >= 1 %>
-  <h4>Characters listed below have been assigned a random role</h4>
+  <h4 class="h4-center">Characters listed below have been assigned a random role</h4>
+  <ul>
     <% @chars.each do |char| %>
-     <p><%= char.char_name %></p>
+     <li><h3><%= char.char_name %></h3></li>
     <% end %>
+  </ul>
   <% end %>
 <% end %>
 
@@ -14,12 +17,12 @@
 
 <% end %>
 
-<h2>Full Role List</h2>
+<header class="flex-item mini-header"><h2>Roles</h2></header>
 
 <% @roles.each do |role| %>
   <% if role.id > 0 %>
-    <p>
-      Role: <%= role.role %>
+    <aside class="flex-item mini-main">
+      <p>Role: <%= role.role %>
       <form action="/role/<%= role.id %>/edit">
         <button type="submit">Edit Role</button>
       </form>
@@ -27,11 +30,11 @@
       <form action="/role/<%= role.id %>/delete">
         <button type="submit">Delete Role</button>
       </form></p>
+    </aside>
   <% end %>
 <% end %>
 
-<hr />
 
-<a href="/role/new">Add new role</a>
-<a href="/">Index</a>
+<footer class="flex-item footer"><a href="/role/new">Add new role</a></footer>
+</section>
 
