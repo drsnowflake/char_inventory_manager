@@ -52,6 +52,7 @@ races.each do |race|
   }).save
 end
 
+
 roles = %w[Barbarian Bard Cleric Druid Fighter Monk Paladin Ranger Rogue Sorcerer Warlock Wizard]
 
 roles.each do |role| 
@@ -59,10 +60,6 @@ roles.each do |role|
     'role' => role
   }).save
 end
-
-race_choices = Race.find_other_races(-1)
-
-role_choices = Role.find_other_roles(-1)
 
 
 items = [
@@ -111,7 +108,7 @@ items = [
   {'item_name' => 'Crenshinibon',
     'slot' => slot7.id,
     'flav' => 'Anyone who wields Crenshinibon can create a magical tower, known as Crystal-Tirith. While inside the tower, the bearer of Crenshinibon is immune to all forms of damage.'},
-  {'item_name' => 'Brimedleaf hat of Gideon',
+  {'item_name' => 'Brimleafed Hat of Gideon',
     'slot' => slot1.id,
     'flav' => 'Once rumoured to belong to the greatest bard in all the kingdoms, grants the bearer access to charm person for free (must sing funky town to activate)'}
   ]

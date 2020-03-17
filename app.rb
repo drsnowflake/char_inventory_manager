@@ -3,6 +3,8 @@ require('sinatra/contrib/all') if development?
 
 require_relative('./controllers/character_controller')
 require_relative('./controllers/inventory_controller')
+require_relative('./controllers/generator_controller')
+require_relative('./controllers/reset_controller')
 require_relative('./controllers/item_controller')
 require_relative('./controllers/race_controller')
 require_relative('./controllers/role_controller')
@@ -20,12 +22,3 @@ get '/' do
   @roles = Role.all
   erb :'index'
 end
-
-get '/reset-mini' do
-  erb :'reset-mini'
-end
-
-get '/reset' do
-  erb :'reset'
-end
-
