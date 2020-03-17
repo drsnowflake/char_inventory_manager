@@ -6,3 +6,61 @@ body {
 a {
   color: ivory;
 }
+
+ul {
+  list-style-type: none;
+}
+
+.h4-center {
+  align-self: center ;
+}
+
+.flex-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  height: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+}
+
+.header {
+  flex: 1 100%;
+  font-weight: bold;
+  font-size: 2em;
+  text-align: center;
+}
+
+.mini-header {
+  flex: 1 100%;
+  text-align: center;
+}
+
+.footer {
+  flex: 1 100%;
+  text-align: center;
+}
+
+.sidebar {
+  flex: 1;
+}
+
+.main {
+  flex: 8;
+  text-align: center;
+}
+
+.mini-main {
+  text-align: center;
+  flex-wrap: wrap;
+  width: 21%;
+  border: 2px solid blanchedalmond;
+  padding: 10px;
+}
+
+.flex-item {
+  background-color: steelblue;
+  padding: 10px;
+  color: ivory;
+}

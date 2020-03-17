@@ -29,6 +29,7 @@ get '/item/:id/edit' do
 end
 
 get '/item/:id' do
+  p params
   @item = Item.find_by_id(params[:id])
   erb :'item/show'
 end

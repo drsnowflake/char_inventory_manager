@@ -13,9 +13,9 @@ end
 
 post '/inventory/:id' do
   p current_inventory = Inventory.find_inventory(params[:char_id]).map{|inv|inv}.length
-  if current_inventory >= 10
-    @added = false
+  if params[:char_id].to_i >= 0 && current_inventory >= Inventory.capacity
     @inventory = Inventory.find_by_id(params[:id])
+    redirect :"item/#{params[:item_id]}?moved=false"
   else
     @inventory = Inventory.new({
       'id' => params[:id],
@@ -24,7 +24,6 @@ post '/inventory/:id' do
       })
     @inventory.update
     @inventory = Inventory.find_by_id(params[:id])
-    @added = true
+    redirect :"item/#{params[:item_id]}"
   end
-    erb :'inventory/update'
 end

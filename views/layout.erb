@@ -2,10 +2,25 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="/style.css">
     <title>Character Inventory Manager</title>
+    <link rel="stylesheet" href="/style.css">
   </head>
   <body>
-    <%= yield %>
+    <section class="flex-container">
+      <header class="flex-item header">Character/Inventory Manager</header>
+      <aside class="flex-item sidebar"></aside>
+      <aside class="flex-item sidebar">
+        <h4>Menu</h4>
+        <p><a href="/">Index</a></p>
+        <p><a href="/character">Characters</a></p>
+        <p><a href="/item">Items</a></p>
+        <p><a href="/race">Races</a></p>
+        <p><a href="/role">Roles</a></p>
+      </aside>
+      <main class="flex-item main"><%= yield %></main>
+      <aside class="flex-item sidebar"></aside>
+      <aside class="flex-item sidebar"></aside>
+      <footer class="flex-item footer">Design (c)jank.website</footer>
+    </section>
   </body>
 </html>

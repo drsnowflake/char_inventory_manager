@@ -1,3 +1,7 @@
+<% if params[:moved] == "false" %>
+  <h3>Unable to reassign item, reverted to original owner, characters cannot carry more than <%= Inventory.capacity %> items</h3>
+<% end %>
+
 <p>Name: <%= @item['item_name'] %></p>
 <p>Slot: <%= @item['slot_name'] %></p>
 <p>Flavour Text: <%= @item['flav'] %></p>

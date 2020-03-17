@@ -1,9 +1,10 @@
-<h2>Full Race List</h2>
+<section class="flex-container">
+<header class="flex-item mini-header"><h2>Races</h2></header>
 
 <% @races.each do |race| %>
   <% if race.id > 0 %>
-    <p>
-      Race: <%= race.race %>
+    <aside class="flex-item mini-main">
+      <p>Race: <%= race.race %>
       <form action="/race/<%= race.id %>/edit">
         <button type="submit">Edit Race</button>
       </form>
@@ -11,10 +12,9 @@
       <form action="/race/<%= race.id %>/delete">
         <button type="submit">Delete Race</button>
       </form></p>
+    </aside>
   <% end %>
 <% end %>
 
-<hr />
-
-<a href="/race/new">Add new race</a>
-<a href="/">Index</a>
+<footer class="flex-item footer"><a href="/race/new">Add new race</a></footer>
+</section>
