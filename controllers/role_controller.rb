@@ -18,15 +18,15 @@ get '/role/:id/delete' do
   erb :'role/delete'
 end
 
-post '/role' do
-  @role = Role.new(params)
-  @role.save
-  erb :'role/create'
-end
-
 get '/role/:id/edit' do
   @role = Role.find_by_id(params[:id])
   erb :'role/edit'
+end
+
+post '/role' do
+  @role = Role.new(params)
+  @role.save
+  redirect :'role'
 end
 
 post '/role/:id/delete' do
@@ -44,11 +44,12 @@ post '/role/:id/delete' do
     Role.delete_by_id(@role.id)
     @deleted = true
   end
+  @roles = Role.all
   erb :'role/deleted'
 end
 
 post '/role/:id' do
   @role = Role.new(params)
   @role.update
-  erb :'role/update'
+  redirect :'role'
 end

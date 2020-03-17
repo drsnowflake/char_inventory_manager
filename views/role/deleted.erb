@@ -1,21 +1,37 @@
 <% if @deleted == true %>
-<h1>Long live the mighty role of <%= @role.role %>, oh wait no, you purged them, genocide much?</h1>
+<h3>Long live the mighty role of <%= @role.role %>, oh wait no, you purged them, genocide much?</h3>
 
-<h2>Characters listed below have been assigned a random role</h2>
-  <% @chars.each do |char| %>
-    <p><%= char.char_name %></p>
+<% if @chars.length >= 1 %>
+  <h4>Characters listed below have been assigned a random role</h4>
+    <% @chars.each do |char| %>
+     <p><%= char.char_name %></p>
+    <% end %>
   <% end %>
-
 <% end %>
 
 <% if @deleted == false %>
-<h1>At least one role must excist, please go make another of your choice before deleting this one</h1>
-
-<a href="/role/new">Make a New Role</a>
+<h3>At least one role must excist, please go make another of your choice before deleting this one</h3>
 
 <% end %>
 
+<h2>Full Role List</h2>
 
-<a href="/role">Full Role List</a>
+<% @roles.each do |role| %>
+  <% if role.id > 0 %>
+    <p>
+      Role: <%= role.role %>
+      <form action="/role/<%= role.id %>/edit">
+        <button type="submit">Edit Role</button>
+      </form>
 
+      <form action="/role/<%= role.id %>/delete">
+        <button type="submit">Delete Role</button>
+      </form></p>
+  <% end %>
+<% end %>
+
+<hr />
+
+<a href="/role/new">Add new role</a>
 <a href="/">Index</a>
+

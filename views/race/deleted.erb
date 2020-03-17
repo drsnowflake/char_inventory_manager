@@ -1,11 +1,12 @@
 <% if @deleted == true %>
 <h3>Long live the mighty race of <%= @race.race %>, oh wait no, you purged them, genocide much?</h3>
 
-<h4>Characters listed below have been assigned a random race</h4>
-  <% @chars.each do |char| %>
-    <p><%= char.char_name %></p>
+<% if @chars.length >= 1 %>
+  <h4>Characters listed below have been assigned a random race</h4>
+    <% @chars.each do |char| %>
+      <p><%= char.char_name %></p>
+    <% end %>
   <% end %>
-
 <% end %>
 
 <% if @deleted == false %>
