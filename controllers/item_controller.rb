@@ -40,19 +40,20 @@ post '/item' do
     'item_id' => @item.id
     })
   @inventory.save
-  erb :'item/create'
+  p @item
+  redirect :"item/#{@item.id}"
 end
 
 post '/item/:id/delete' do
   @item = Item.find_by_id(params[:id])
   Inventory.delete_by_id(@item['inv_id'])
   Item.delete_by_id(params[:id])
-  query = @item.map{|key, value| "#{key}=#{value}"}.join("&")
+  query = "char_name=#{@item['char_name']}&item_name=#{@item['item_name']}"
   redirect :"/item?#{query}"
 end
 
 post '/item/:id' do
   @item = Item.new(params)
   @item.update
-  erb :'item/update'
+  redirect :"item/#{@item.id}"
 end
