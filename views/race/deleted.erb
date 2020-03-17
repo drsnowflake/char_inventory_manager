@@ -1,7 +1,7 @@
 <% if @deleted == true %>
-<h1>Long live the mighty race of <%= @race.race %>, oh wait no, you purged them, genocide much?</h1>
+<h3>Long live the mighty race of <%= @race.race %>, oh wait no, you purged them, genocide much?</h3>
 
-<h2>Characters listed below have been assigned a random race</h2>
+<h4>Characters listed below have been assigned a random race</h4>
   <% @chars.each do |char| %>
     <p><%= char.char_name %></p>
   <% end %>
@@ -9,13 +9,28 @@
 <% end %>
 
 <% if @deleted == false %>
-<h1>At least one race must exist, please go make another of your choice before deleting this one</h1>
-
-<a href="/race/new">Make a New Race</a>
+<h3>At least one race must exist, please go make another of your choice before deleting this one</h3>
 
 <% end %>
 
 
-<a href="/race">Full Race List</a>
+<h2>Full Race List</h2>
 
+<% @races.each do |race| %>
+  <% if race.id > 0 %>
+    <p>
+      Race: <%= race.race %>
+      <form action="/race/<%= race.id %>/edit">
+        <button type="submit">Edit Race</button>
+      </form>
+
+      <form action="/race/<%= race.id %>/delete">
+        <button type="submit">Delete Race</button>
+      </form></p>
+  <% end %>
+<% end %>
+
+<hr />
+
+<a href="/race/new">Add new race</a>
 <a href="/">Index</a>

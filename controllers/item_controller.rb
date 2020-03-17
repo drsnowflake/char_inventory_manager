@@ -7,6 +7,7 @@ require_relative('../models/slot')
 also_reload('../models/*')
 
 get '/item' do
+  p @item
   @items = Item.all
   erb :'item/index'
 end
@@ -48,8 +49,8 @@ post '/item/:id/delete' do
   @item = Item.find_by_id(params[:id])
   Inventory.delete_by_id(@item['inv_id'])
   Item.delete_by_id(params[:id])
-  query = "char_name=#{@item['char_name']}&item_name=#{@item['item_name']}"
-  redirect :"/item?#{query}"
+  params = "char_name=#{@item['char_name']}&item_name=#{@item['item_name']}"
+  redirect :"/item?#{params}"
 end
 
 post '/item/:id' do

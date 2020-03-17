@@ -26,7 +26,7 @@ end
 post '/race' do
   @race = Race.new(params)
   @race.save
-  erb :'race/create'
+  redirect :'race'
 end
 
 post '/race/:id/delete' do
@@ -44,11 +44,12 @@ post '/race/:id/delete' do
     Race.delete_by_id(@race.id)
     @deleted = true
   end
+  @races = Race.all
   erb :'race/deleted'
 end
 
 post '/race/:id' do
   @race = Race.new(params)
   @race.update
-  erb :'race/update'
+  redirect :'race'
 end
