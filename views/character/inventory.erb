@@ -1,0 +1,20 @@
+<form method="post" action="/character/<%= @character['id'] %>/inventory">
+  <p><label for="char_name">Name: </label>
+  <input type="text" id="char_name" value="<%= @character['char_name'] %>" REQUIRED/></p>
+
+
+<% @slots.each do |slot| %>
+    <p><label for="<%= slot.slot_name %>%"><%= slot.slot_name %> </label>
+        <select name="<%= slot.id %>" id="<%= slot.slot_name %>">
+        <option value="">== Nothing ==</option>
+        <% @inventory.each do |inv| %>
+        <% p inv %>
+            <% if inv['slot_id'].to_i == slot.id %>
+                <option value="<%= inv['id'] %>"><%= inv['item_name'] %></option>
+            <% end %>
+        <% end %>
+        </select>
+<% end %>
+
+  <p><input type="submit" value="Update Character">
+</form>

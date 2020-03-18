@@ -20,7 +20,8 @@ post '/inventory/:id' do
     @inventory = Inventory.new({
       'id' => params[:id],
       'char_id' => params[:char_id],
-      'item_id' => params[:item_id]
+      'item_id' => params[:item_id],
+      'equipped' => false
       })
     @inventory.update
     @inventory = Inventory.find_by_id(params[:id])

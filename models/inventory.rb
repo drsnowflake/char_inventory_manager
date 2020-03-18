@@ -14,21 +14,21 @@ class Inventory
   end
 
   def save
-    values = [@char_id, @item_id]
+    values = [@char_id, @item_id, @equipped = false]
     sql = 'INSERT INTO inventory
-            (char_id, item_id)
+            (char_id, item_id, equipped)
             VALUES
-            ($1,$2)
+            ($1,$2, $3)
             RETURNING id'
     @id = SqlRunner.run(sql, values).first['id'].to_i
   end
 
   def update
-    values = [@char_id, @item_id, @id]
+    values = [@char_id, @item_id, @equipped, @id]
     sql = 'UPDATE inventory
-            SET (char_id, item_id)
+            SET (char_id, item_id, equipped)
             =
-            ($1,$2)
+            ($1,$2,$3)
             WHERE id = $4'
     SqlRunner.run(sql, values)
   end
@@ -67,6 +67,7 @@ class Inventory
     sql = 'SELECT items.id,
                   items.item_name,
                   slots.slot_name,
+                  slots.id AS slot_id,
                   inventory.id as inv_id
             FROM items
             INNER JOIN inventory

@@ -118,7 +118,7 @@ items.each do |item|
   temp.save
   Inventory.new({
     'char_id' => -1,
-    'item_id' => temp.id
+    'item_id' => temp.id,
   }).save
 end
 
@@ -134,7 +134,8 @@ stolen_items.each{|item|
   Inventory.new({
     'id' => item.id,
     'char_id' => bt.to_i,
-    'item_id' => item.item_id
+    'item_id' => item.item_id,
+    'equipped' => false
   }).update}
 
 %>

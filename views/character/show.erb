@@ -11,6 +11,10 @@
 <% end %>
 
 <% if params[:id].to_i > 0 %>
+  <form action="/character/<%= @character['id'] %>/inventory">
+    <button type="submit">Equip Items</button>
+  </form>
+
   <form action="/character/<%= @character['id'] %>/edit">
     <button type="submit">Edit Character</button>
   </form>

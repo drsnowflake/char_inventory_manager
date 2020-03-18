@@ -18,6 +18,13 @@ get '/character/new' do
   erb :'character/new'
 end
 
+get '/character/:id/inventory' do
+  @character = Character.find_by_id(params[:id])
+  @inventory = Inventory.find_inventory(params[:id]).each{|item|p item}
+  @slots = Slot.all
+  erb :'character/inventory'
+end
+
 get '/character/:id/delete' do
   @character = Character.find_by_id(params[:id])
   erb :'character/delete'
@@ -40,6 +47,11 @@ post '/character' do
   @character = Character.new(params)
   @character.save()
   redirect :'character'
+end
+
+post '/character/:id/inventory' do
+  p params
+  redirect :"character/#{params[:id]}"
 end
 
 post '/character/:id/delete' do
