@@ -10,6 +10,7 @@ class Inventory
     @id = options['id'].to_i if options['id']
     @char_id = options['char_id'].to_i
     @item_id = options['item_id'].to_i
+    @equipped = options['equipped']
   end
 
   def save
@@ -28,7 +29,7 @@ class Inventory
             SET (char_id, item_id)
             =
             ($1,$2)
-            WHERE id = $3'
+            WHERE id = $4'
     SqlRunner.run(sql, values)
   end
 

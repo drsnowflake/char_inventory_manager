@@ -37,7 +37,8 @@ CREATE TABLE characters (
 CREATE TABLE inventory (
   id SERIAL PRIMARY KEY,
   char_id INT REFERENCES characters(id),
-  item_id INT REFERENCES items(id)
+  item_id INT REFERENCES items(id),
+  equipped BOOLEAN DEFAULT FALSE
 );
 
 

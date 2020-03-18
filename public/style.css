@@ -4,7 +4,13 @@ body {
 }
 
 a {
-  color: ivory;
+  color: #E8E8DB;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #09bc8a;
+  font-size: x-large;
 }
 
 ul {

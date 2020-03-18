@@ -4,7 +4,7 @@
 <% @races.each do |race| %>
   <% if race.id > 0 %>
     <aside class="flex-item mini-main">
-      <p>Race: <%= race.race %>
+      <p><%= race.race %>
       <form action="/race/<%= race.id %>/edit">
         <button type="submit">Edit Race</button>
       </form>
