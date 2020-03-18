@@ -1,3 +1,8 @@
+<% if params[:char_name] %>
+  <h3>Farewell <%= params['char_name'] %> you will be missed</h3>
+  <h4>Any items equipped have been returned to unassigned</h4>
+<% end %>
+
 <h2>Character List</h2>
 
 <% @characters.each do |character| %>
@@ -8,9 +13,9 @@
 
 <hr />
 
-<% if @characters.length == 1 %>
-  <p>No adventurers in database, maybe go make one?</p>
-  <p>Or use the super secret beta <a href="/generator">random character generator!</a></p>
+<% if @characters.length < 3 %>
+  <p>Only a few adventurers in database, maybe go make some?</p>
+  <p>Or use the super secret beta <a href="/generator">random character generator!</a> (now with potentially no duplicate name guarantee)</p>
 <% end %>
 
 <a href="/character/new">Add new adventurer</a>

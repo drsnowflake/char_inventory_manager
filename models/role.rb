@@ -43,6 +43,13 @@ class Role
     SqlRunner.run(sql,values).first
   end
 
+  def self.find_by_name(name)
+    values = [name]
+    sql = 'SELECT roles.id FROM roles
+            WHERE roles.role = $1'
+    SqlRunner.run(sql, values).first
+  end
+
   def self.find_other_roles(id)
     values = [id]
     sql = 'SELECT * FROM roles

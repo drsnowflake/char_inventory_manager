@@ -4,7 +4,7 @@
   <% end %>
 <% end %>
 
-<h2>Full Item List</h2>
+<h2>Items</h2>
 
 <% @items.each do |item| %>
 <p><a href="/item/<%= item.id %>"><%= item.item_name %></a></p>
@@ -17,4 +17,3 @@
 <% end %>
 
 <a href="/item/new">Add New Item</a>
-<a href="/">Index</a>

@@ -13,11 +13,11 @@ require_relative('../models/role')
 also_reload('./models/*')
 
 
-get '/reset-mini' do
-  erb :'resets/reset-mini'
+get '/reseed' do
+  erb :'resets/reseed'
 end
 
-get '/reset' do
-  erb :'resets/reset'
+get '/demo' do
+  erb :'resets/demo'
 end
 

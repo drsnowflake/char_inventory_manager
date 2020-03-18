@@ -50,6 +50,13 @@ class Race
     SqlRunner.run(sql, values).map{|race|race}
   end
 
+  def self.find_by_name(name)
+    values = [name]
+    sql = 'SELECT races.id FROM races
+            WHERE races.race = $1'
+    SqlRunner.run(sql, values).first
+  end
+
   def self.find_chars(id)
     values = [id]
     sql = 'SELECT * FROM characters

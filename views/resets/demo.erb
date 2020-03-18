@@ -44,7 +44,7 @@ slot6.save
 slot7.save
 
 
-races = %w[Dragonborn Dwarf Elf Gnome Half-Elf Halfling Half-Orc Human Tiefling]
+races = %w[Dragonborn Dwarf Elf Gnome Half-Elf Halfling Half-Orc Human Tiefling Troll]
 
 races.each do |race| 
   Race.new({
@@ -121,5 +121,20 @@ items.each do |item|
     'item_id' => temp.id
   }).save
 end
+
+
+bt = Character.new({
+  'char_name' => 'Bobby Droptable',
+  'race_id' => Race.find_by_name('Troll')['id'],
+  'role_id' => Role.find_by_name('Rogue')['id']
+}).save
+
+stolen_items = Inventory.all.first(8)
+stolen_items.each{|item|
+  Inventory.new({
+    'id' => item.id,
+    'char_id' => bt.to_i,
+    'item_id' => item.item_id
+  }).update}
 
 %>

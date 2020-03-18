@@ -39,7 +39,7 @@ end
 post '/character' do
   @character = Character.new(params)
   @character.save()
-  erb :'character/create'
+  redirect :'character'
 end
 
 post '/character/:id/delete' do
@@ -54,11 +54,12 @@ post '/character/:id/delete' do
     drop_item.update
   end
   Character.delete_by_id(params[:id])
-  erb :'character/deleted'
+  params = "char_name=#{@character['char_name']}"
+  redirect :"character?#{params}"
 end
 
 post '/character/:id' do
   @character = Character.new(params)
   @character.update()
-  erb :'character/update'
+  redirect :"character/#{params[:id]}"
 end

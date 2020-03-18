@@ -7,7 +7,6 @@ require_relative('../models/slot')
 also_reload('../models/*')
 
 get '/item' do
-  p @item
   @items = Item.all
   erb :'item/index'
 end
@@ -29,7 +28,6 @@ get '/item/:id/edit' do
 end
 
 get '/item/:id' do
-  p params
   @item = Item.find_by_id(params[:id])
   erb :'item/show'
 end
@@ -42,7 +40,6 @@ post '/item' do
     'item_id' => @item.id
     })
   @inventory.save
-  p @item
   redirect :"item/#{@item.id}"
 end
 

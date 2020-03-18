@@ -36,6 +36,11 @@ class Inventory
     @capacity
   end
 
+  def self.all
+    sql = 'SELECT * FROM inventory'
+    SqlRunner.run(sql).map{|inv|Inventory.new(inv)}
+  end
+
   def self.find_by_id(id)
     values = [id]
     sql = 'SELECT characters.id AS char_id,
