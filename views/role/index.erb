@@ -4,7 +4,7 @@
 <% @roles.each do |role| %>
   <% if role.id > 0 %>
     <aside class="flex-item mini-main">
-      <p><%= role.role %>
+      <%= role.role %>
       <form action="/role/<%= role.id %>/edit">
         <button type="submit">Edit Role</button>
       </form>

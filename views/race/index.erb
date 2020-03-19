@@ -3,16 +3,15 @@
 
 <% @races.each do |race| %>
   <% if race.id > 0 %>
-    <aside class="flex-item mini-main">
-      <p><%= race.race %>
-      <form action="/race/<%= race.id %>/edit">
-        <button type="submit">Edit Race</button>
-      </form>
-
-      <form action="/race/<%= race.id %>/delete">
-        <button type="submit">Delete Race</button>
-      </form></p>
-    </aside>
+  <aside class="flex-item mini-main">
+    <%= race.race %>
+    <form action="/race/<%= race.id %>/edit">
+      <button type="submit">Edit Race</button>
+    </form>
+     <form action="/race/<%= race.id %>/delete">
+      <button type="submit">Delete Race</button>
+    </form>
+   </aside>
   <% end %>
 <% end %>
 
