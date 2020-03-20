@@ -4,16 +4,15 @@
 
 
 <% @slots.each do |slot| %>
-    <p><label for="<%= slot.slot_name %>%"><%= slot.slot_name %> </label>
-        <select name="<%= slot.id %>" id="<%= slot.slot_name %>">
-        <option value="">== Nothing ==</option>
-        <% @inventory.each do |inv| %>
-        <% p inv %>
-            <% if inv['slot_id'].to_i == slot.id %>
-                <option value="<%= inv['id'] %>"><%= inv['item_name'] %></option>
-            <% end %>
+  <p><label for="<%= slot.slot_name %>%"><%= slot.slot_name %> </label>
+    <select name="<%= slot.id %>" id="<%= slot.slot_name %>">
+      <option value="-1">== Empty Slot ==</option>
+      <% @inventory.each do |inv| %>
+        <% if inv['slot_id'].to_i == slot.id %>
+          <option value="<%= inv['id'] %>"><%= inv['item_name'] %></option>
         <% end %>
-        </select>
+      <% end %>
+    </select>
 <% end %>
 
   <p><input type="submit" value="Update Character">

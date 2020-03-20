@@ -17,8 +17,8 @@ post '/generator' do
     dupe_counter = 0
     counter = 0
     until counter == requested
-        generated_name = Character.random_name
-        until Character.find_by_name(generated_name) == nil
+        generated_name = Character.random_name.chomp
+        until Character.find_by_name(generated_name).nil?
             generated_name = Character.random_name
             dupe_counter += 1
         end

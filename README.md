@@ -9,7 +9,6 @@ A Dungeon Master (DM) has approached asking for a way to monitor and modify thei
 - The app should allow the user to assign/remove items from characters
 - The app should allow the user to edit and delete characters/items
 
-
 #### Possible Extensions
 
 - The app could allow the ability to add further races and classes for creation
